@@ -1,0 +1,4 @@
+﻿  tspSA.cpp
+c:\users\filip\documents\workspace\vsprojects\pwr-tsp-sa\pwr-tsp-sa\tspsa.cpp(62): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  PWr-TSP-SA.vcxproj -> C:\Users\Filip\Documents\workspace\VSProjects\PWr-TSP-SA\Debug\PWr-TSP-SA.exe
+  PWr-TSP-SA.vcxproj -> C:\Users\Filip\Documents\workspace\VSProjects\PWr-TSP-SA\Debug\PWr-TSP-SA.pdb (Partial PDB)
