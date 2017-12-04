@@ -24,8 +24,9 @@ public:
 	int calculateCost(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities]);
 	int randInt(int l, int r);
 	double randFraction(void);
-	void TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities]);
-	void testAlgorithm();
-	void makeMeasurements();
+	int TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities]);
+	//int getBestCost(void);
+	void testAlgorithm(void);
+	void makeMeasurements(void);
 
 };

@@ -34,14 +34,14 @@ int tspSA::calculateCost(int adjacancyMatrix[noOfCities][noOfCities], int calcPa
 		
 		int a = calcPath[i];
 		//cout << endl << "a= "<< a;
-		int b = calcPath[(i + 1) % noOfCities];
+		int b = calcPath[i + 1];
 		//cout << endl << "b= " << b;
-		tmpCost += adjacancyMatrix[a][b];
-		if (i == noOfCities - 1)
+		tmpCost += adjacancyMatrix[a][b % (noOfCities)];
+		/*if (i == noOfCities - 1)
 		{
 			calcPath[i + 1] = calcPath[0];
 			tmpCost += adjacancyMatrix[calcPath[i]][calcPath[0]];
-		}
+		}*/
 	}
 	return tmpCost;
 }
@@ -57,7 +57,7 @@ double tspSA::randFraction(void)
 }
 
 // g³owna funkcja programu
-void tspSA::TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities+1])
+int tspSA::TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities+1])
 {
 	srand(time(0));
 
@@ -73,7 +73,7 @@ void tspSA::TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCi
 	}
 
 	// glowna petla
-	for (double T = 1; T >= 1E-4; T *= 0.9)
+	for (double T = 1E128; T >= 1E-4; T *= 0.9)
 		for (int n = 0; n <= 100 * noOfCities; n++)
 		{
 			
@@ -84,23 +84,25 @@ void tspSA::TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCi
 			// r - tweak attempt
 			int newCost = calculateCost(adjacancyMatrix, calcPath);
 
-			if (newCost <= currCost || randFraction() < exp((currCost - newCost) / T))
+			if (newCost < currCost || randFraction() < exp((currCost - newCost) / T))
 			{
 				// s = r
 				currCost = newCost; 
+
+				// best = s
+				//bestCost = std::min(bestCost, currCost);
+				if (currCost < bestCost)
+				{
+					bestCost = currCost;
+					for (int i = 0; i < noOfCities + 1; i++)
+					{
+						bestPath[i] = calcPath[i];
+					}
+				}
 			}
 			else
 				std::swap(calcPath[i], calcPath[j]);
 
-			// best = s
-			bestCost = std::min(bestCost, currCost);
-			if (currCost < bestCost)
-			{
-				for (int i = 0; i < noOfCities + 1; i++)
-				{
-					bestPath[i] = calcPath[i];
-				}
-			}
 		}
 
 	cout << endl << endl << "Cost:\t" << bestCost << endl;
@@ -109,6 +111,7 @@ void tspSA::TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCi
 	{
 		cout << bestPath[i] << "\t";
 	}
+	return bestCost;
 }
 
 // testowanie jednej instancji algorytmu dla danych z gr17_d.txt w folderze z kodem
@@ -134,22 +137,24 @@ void tspSA::testAlgorithm(void)
 
 // 100 pomiarów czasu oraz eksport pomiarów do pliku output.txt
 void tspSA::makeMeasurements(void)
-{/*
+{
 	int adjacencyMatrix[noOfCities][noOfCities];
-	int seq[noOfCities + 1];
+	int calcPath[noOfCities + 1];
+
 	loadFromFile(adjacencyMatrix);
-	pathInit(seq);
+	pathInit(calcPath);
 
 	Stopwatch *timer = new Stopwatch();
 	ofstream myOutput("output.txt");
+	int result = 0;
 
 	for (int i = 0; i < 51; i++)
 	{
 		timer->point1 = chrono::high_resolution_clock::now();
-		TSP(adjacencyMatrix);
-		myOutput << timer->countTimeDiff() << "\t" << bestCost << endl;
+		result = TSP(adjacencyMatrix, calcPath);
+		myOutput << timer->countTimeDiff() << "\t" << result << endl;
 	}
-	cout << "\nDone";*/
+	cout << "\nDone";
 }
 
 tspSA::tspSA()
