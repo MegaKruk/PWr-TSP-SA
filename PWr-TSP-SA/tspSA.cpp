@@ -3,7 +3,7 @@
 
 void tspSA::loadFromFile(int adjacancyMatrix[noOfCities][noOfCities])
 {
-	ifstream myFile("gr17_d.txt");
+	ifstream myFile("data/swiss42_d.txt");
 	for (int i = 0; i < noOfCities; i++)
 	{
 		cout << "\n";
@@ -15,7 +15,7 @@ void tspSA::loadFromFile(int adjacancyMatrix[noOfCities][noOfCities])
 	}
 }
 
-void tspSA::pathInit(int calcPath[noOfCities+1])
+void tspSA::pathInit(int calcPath[noOfCities + 1])
 {
 	for (int i = 0; i < noOfCities; i++)
 	{
@@ -25,7 +25,7 @@ void tspSA::pathInit(int calcPath[noOfCities+1])
 	}
 }
 
-int tspSA::calculateCost(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities+1])
+int tspSA::calculateCost(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities + 1])
 {
 	int tmpCost = 0;
 	for (int i = 0; i < noOfCities; i++)
@@ -57,7 +57,7 @@ double tspSA::randFraction(void)
 }
 
 // g³owna funkcja programu
-int tspSA::TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities+1])
+int tspSA::TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities + 1])
 {
 	srand(time(0));
 
@@ -73,7 +73,7 @@ int tspSA::TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCit
 	}
 
 	// glowna petla
-	for (double T = 1E128; T >= 1E-4; T *= 0.9)
+	for (double T = 1; T >= 1E-4; T *= 0.9)
 		for (int n = 0; n <= 100 * noOfCities; n++)
 		{
 			
@@ -90,7 +90,6 @@ int tspSA::TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCit
 				currCost = newCost; 
 
 				// best = s
-				//bestCost = std::min(bestCost, currCost);
 				if (currCost < bestCost)
 				{
 					bestCost = currCost;
@@ -153,8 +152,9 @@ void tspSA::makeMeasurements(void)
 		timer->point1 = chrono::high_resolution_clock::now();
 		result = TSP(adjacencyMatrix, calcPath);
 		myOutput << timer->countTimeDiff() << "\t" << result << endl;
+		cout << endl << (i + 1) * 100 / 51 << " % done";
 	}
-	cout << "\nDone";
+	//cout << "\nDone";
 }
 
 tspSA::tspSA()
