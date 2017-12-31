@@ -1,4 +1,17 @@
-﻿  tspSA.cpp
-c:\users\filip\documents\workspace\vsprojects\pwr-tsp-sa\pwr-tsp-sa\tspsa.cpp(62): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  PWr-TSP-SA.vcxproj -> C:\Users\Filip\Documents\workspace\VSProjects\PWr-TSP-SA\Debug\PWr-TSP-SA.exe
-  PWr-TSP-SA.vcxproj -> C:\Users\Filip\Documents\workspace\VSProjects\PWr-TSP-SA\Debug\PWr-TSP-SA.pdb (Partial PDB)
+﻿Build started 01.01.2018 00:23:15.
+     1>Project "C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\PWr-TSP-SA\PWr-TSP-SA.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt tspSA.cpp
+         tspSA.cpp
+     1>c:\users\filicz\documents\workspace\vsprojects\pwr-tsp-sa\pwr-tsp-sa\tspsa.cpp(46): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\filicz\documents\workspace\vsprojects\pwr-tsp-sa\pwr-tsp-sa\tspsa.cpp(191): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\Debug\PWr-TSP-SA.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG:FASTLINK /PDB:"C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\Debug\PWr-TSP-SA.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\Debug\PWr-TSP-SA.lib" /MACHINE:X86 Debug\main.obj
+         Debug\Stopwatch.obj
+         Debug\tspSA.obj
+         PWr-TSP-SA.vcxproj -> C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\Debug\PWr-TSP-SA.exe
+     1>Done Building Project "C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\PWr-TSP-SA\PWr-TSP-SA.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.45

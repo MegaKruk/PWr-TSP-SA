@@ -1,0 +1,22 @@
+﻿Build started 01.01.2018 00:23:22.
+     1>Project "C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\PWr-TSP-SA\PWr-TSP-SA.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Release\\" /Fd"Release\vc140.pdb" /Gd /TP /analyze- /errorReport:prompt tspSA.cpp
+         tspSA.cpp
+     1>tspSA.cpp(46): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>tspSA.cpp(191): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\Release\PWr-TSP-SA.exe" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\Release\PWr-TSP-SA.pdb" /OPT:REF /OPT:ICF /LTCG:incremental /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\Release\PWr-TSP-SA.lib" /MACHINE:X86 /SAFESEH Release\main.obj
+         Release\Stopwatch.obj
+         Release\tspSA.obj
+         Generating code
+         10 of 411 functions ( 2.4%) were compiled, the rest were copied from previous compilation.
+           3 functions were new in current compilation
+           20 functions had inline decision re-evaluated but remain unchanged
+         Finished generating code
+         PWr-TSP-SA.vcxproj -> C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\Release\PWr-TSP-SA.exe
+     1>Done Building Project "C:\Users\Filicz\Documents\workspace\VSProjects\PWr-TSP-SA\PWr-TSP-SA\PWr-TSP-SA.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:01.04

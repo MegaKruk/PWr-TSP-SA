@@ -5,28 +5,26 @@
 #include<iostream>
 #include<fstream>
 #include<algorithm>
+#include<cstdlib>
+#include<cmath>
+#include<vector>
 
 class tspSA
 {
 private:
-	static const int noOfCities = 42;
+	int noOfCities;
 
 public:
-	int adjacencyMatrix[noOfCities][noOfCities];
-	int calcPath[noOfCities + 1];
-	//int bestPath[noOfCities + 1];
+	std::vector<std::vector<int>> adjacencyMatrix;
+	std::vector<int> calcPath;
 
 public:
 	tspSA();
 	~tspSA();
-	void loadFromFile(int adjacancyMatrix[noOfCities][noOfCities]);
-	void pathInit(int calcPath[noOfCities + 1]);
-	int calculateCost(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities + 1]);
+	void pathInit(std::vector<int> &calcPath, int noOfCities);
+	int calculateCost(std::vector<std::vector<int>> &adjacancyMatrix, std::vector<int> &calcPath, int noOfCities);
 	int randInt(int l, int r);
 	double randFraction(void);
-	int TSP(int adjacancyMatrix[noOfCities][noOfCities], int calcPath[noOfCities + 1]);
-	//int getBestCost(void);
-	void testAlgorithm(void);
-	void makeMeasurements(void);
-
+	int TSP(std::vector<std::vector<int>> &adjacancyMatrix, std::vector<int> &calcPath, int noOfCities);
+	void testChamber(void);
 };
