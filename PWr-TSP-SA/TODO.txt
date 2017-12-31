@@ -1,1 +1,4 @@
-wykesy w skali logarytmicznej
+wykresy w skali logarytmicznej - done
+parser - done
+u¿yæ vectora - done
+
