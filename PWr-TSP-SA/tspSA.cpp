@@ -19,7 +19,6 @@ int tspSA::calculateCost(std::vector<std::vector<int>> &adjacancyMatrix, std::ve
 	for (int i = 0; i < noOfCities; i++)
 	{
 		//std::cout << endl << seq[i] << endl;
-		
 		int a = calcPath[i];
 		//std::cout << endl << "a= "<< a;
 		int b = calcPath[i + 1];
@@ -64,9 +63,9 @@ int tspSA::TSP(std::vector<std::vector<int>> &adjacancyMatrix, std::vector<int> 
 	for (double T = 1; T >= 1E-4; T *= 0.9)
 		for (int n = 0; n <= 100 * noOfCities; n++)
 		{
-			
-			int i = randInt(1, noOfCities-1);
-			int j = randInt(1, noOfCities-1);
+
+			int i = randInt(1, noOfCities - 1);
+			int j = randInt(1, noOfCities - 1);
 			std::swap(calcPath[i], calcPath[j]);
 
 			// r - tweak attempt
@@ -75,7 +74,7 @@ int tspSA::TSP(std::vector<std::vector<int>> &adjacancyMatrix, std::vector<int> 
 			if (newCost < currCost || randFraction() < exp((currCost - newCost) / T))
 			{
 				// s = r
-				currCost = newCost; 
+				currCost = newCost;
 
 				// best = s
 				if (currCost < bestCost)
@@ -102,45 +101,43 @@ int tspSA::TSP(std::vector<std::vector<int>> &adjacancyMatrix, std::vector<int> 
 	return bestCost;
 }
 
-void tspSA::testChamber(void)
+// wczytanie danych, przygotowanie funkcji TSP
+void tspSA::tspInit(std::vector<std::vector<int>> &adjacancyMatrix, std::vector<int> &calcPath, int noOfCities)
 {
-	string filename, fileInput;
+	string filename, filePointer;
 	ifstream myFile;
 	std::cout << "Enter filename. Must be in 'data' folder: \n";
 	std::cin >> filename;
 	myFile.open("data/" + filename);
 	if (myFile.is_open())
 	{
-		do myFile >> fileInput;
-		while (fileInput != "DIMENSION:");
+		do myFile >> filePointer;
+		while (filePointer != "DIMENSION:");
 
-		myFile >> fileInput;
-		int noOfCities = atoi(fileInput.c_str());
+		myFile >> filePointer;
+		noOfCities = atoi(filePointer.c_str());
 
-		std::vector<std::vector<int>> adjacancyMatrix;
-		//adjacancyMatrix.resize(0);
 		adjacancyMatrix.resize(noOfCities);
 		for (int i = 0; i < noOfCities; ++i)
 			adjacancyMatrix[i].resize(noOfCities);
 
-		std::vector<int> calcPath;
-		//calcPath.resize(0);
 		calcPath.resize(noOfCities + 1);
 
-		do myFile >> fileInput;
-		while (fileInput != "EDGE_WEIGHT_TYPE:");
-		myFile >> fileInput;
+		do myFile >> filePointer;
+		while (filePointer != "EDGE_WEIGHT_TYPE:");
+		myFile >> filePointer;
 
-		if (fileInput == "EXPLICIT")
+
+		if (filePointer == "EXPLICIT")
 		{
-			do myFile >> fileInput;
-			while (fileInput != "EDGE_WEIGHT_FORMAT:");
-			myFile >> fileInput;
+			do myFile >> filePointer;
+			while (filePointer != "EDGE_WEIGHT_FORMAT:");
+			myFile >> filePointer;
 
-			if (fileInput == "FULL_MATRIX")
+			if (filePointer == "FULL_MATRIX")
 			{
-				do myFile >> fileInput;
-				while (fileInput != "EDGE_WEIGHT_SECTION");
+				do myFile >> filePointer;
+				while (filePointer != "EDGE_WEIGHT_SECTION");
 
 				for (int i = 0; i < noOfCities; i++)
 				{
@@ -155,25 +152,25 @@ void tspSA::testChamber(void)
 			else
 				std::cout << "\nError! Unsupported format.";
 		}
-		else if (fileInput == "EUC_2D")
+		else if (filePointer == "EUC_2D")
 		{
 			std::vector<double> xVect;
-				xVect.clear();
+			xVect.clear();
 			std::vector<double> yVect;
-				yVect.clear();
+			yVect.clear();
 
-			do myFile >> fileInput;
-			while (fileInput != "NODE_COORD_SECTION");
+			do myFile >> filePointer;
+			while (filePointer != "NODE_COORD_SECTION");
 
 			for (int i = 0; i < noOfCities; i++)
 			{
-				myFile >> fileInput;
+				myFile >> filePointer;
 
-				myFile >> fileInput;
-				xVect.push_back(atof(fileInput.c_str()));
+				myFile >> filePointer;
+				xVect.push_back(atof(filePointer.c_str()));
 
-				myFile >> fileInput;
-				yVect.push_back(atof(fileInput.c_str()));
+				myFile >> filePointer;
+				yVect.push_back(atof(filePointer.c_str()));
 
 				std::cout << "\n";
 				std::cout << (i + 1) << "\t" << xVect[i] << "\t" << yVect[i] << endl;
@@ -204,10 +201,12 @@ void tspSA::testChamber(void)
 			std::cout << "\nError! Unsupported format.";
 		myFile.close();
 
+		// main menu
 		int option;
 		std::cout << endl;
 		std::cout << "\n1 - Test algorithm\n2 - Make measurements\n";
 		std::cin >> option;
+		
 		switch (option)
 		{
 		case 1:
@@ -219,7 +218,7 @@ void tspSA::testChamber(void)
 			std::cout << endl << timer->countTimeDiff() << " nanosecs to complete this action\n";
 			calcPath.clear();
 			adjacancyMatrix.clear();
-			break; 
+			break;
 
 		}
 		case 2:
@@ -249,6 +248,28 @@ void tspSA::testChamber(void)
 	}
 	else
 		std::cout << "Error! No such file in 'data' directory";
+}
+
+// gettery
+std::vector<std::vector<int>> tspSA::getAdjacancyMatrix(void)
+{
+	return std::vector<std::vector<int>>(adjacancyMatrix);
+}
+
+std::vector<int> tspSA::getCalcPath(void)
+{
+	return std::vector<int>(calcPath);
+}
+
+int tspSA::getNoOfCities(void)
+{
+	return noOfCities;
+}
+
+// funkcja inicjuj¹ca obiekt
+void tspSA::start(void)
+{
+	tspInit(getAdjacancyMatrix(), getCalcPath(), getNoOfCities());
 }
 
 tspSA::tspSA()

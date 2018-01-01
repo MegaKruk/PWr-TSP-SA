@@ -12,11 +12,9 @@
 class tspSA
 {
 private:
-	int noOfCities;
-
-public:
-	std::vector<std::vector<int>> adjacencyMatrix;
+	std::vector<std::vector<int>> adjacancyMatrix;
 	std::vector<int> calcPath;
+	int noOfCities;
 
 public:
 	tspSA();
@@ -26,5 +24,9 @@ public:
 	int randInt(int l, int r);
 	double randFraction(void);
 	int TSP(std::vector<std::vector<int>> &adjacancyMatrix, std::vector<int> &calcPath, int noOfCities);
-	void testChamber(void);
+	void tspInit(std::vector<std::vector<int>> &adjacancyMatrix, std::vector<int> &calcPath, int noOfCities);
+	std::vector<std::vector<int>> getAdjacancyMatrix(void);
+	std::vector<int> getCalcPath(void);
+	void start(void);
+	int getNoOfCities(void);
 };

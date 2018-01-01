@@ -1,4 +1,5 @@
 wykresy w skali logarytmicznej - done
 parser - done
 u¿yæ vectora - done
+hermetyzacja - done
 
